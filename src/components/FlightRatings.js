@@ -1,3 +1,5 @@
+import {useState} from 'react';
+
 const FlightRatingCard = (props) => {
 	return (
 		<div class="card col-md-12 mb-3">

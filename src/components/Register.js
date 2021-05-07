@@ -2,51 +2,77 @@ import { useState } from 'react';
 
 const Register = () => {
 	const [userType, setUserType] = useState("");
+
+	function useInput({ type, className, id /*...*/ }) {
+	   const [value, setValue] = useState("");
+	   const input = <input value={value} id={id} onChange={e => setValue(e.target.value)} 
+	   type={type} className={className} name={id} />;
+	   return [value, input];
+ 	}
+
+ 	const [emailValue, setEmailValue] = useInput({ type: "email", className: "form-control", id: "email" });
+ 	const [passwordValue, setPasswordValue] = useInput({ type: "password", className: "form-control", id: "password" });
+
+ 	const [buildingNameValue, setBuildingNameValue] = useInput({ type: "text", className: "form-control", id: "buildingName" });
+ 	const [streetValue, setStreetValue] = useInput({ type: "text", className: "form-control", id: "street" });
+ 	const [cityValue, setCityValue] = useInput({ type: "text", className: "form-control", id: "city" });
+ 	const [stateValue, setStateValue] = useInput({ type: "text", className: "form-control", id: "state" });
+ 	const [companyValue, setCompanyValue] = useInput({ type: "text", className: "form-control", id: "company" });
+ 	const [phoneNumberValue, setPhoneNumberValue] = useInput({ type: "number", className: "form-control", id: "phoneNumber" });
+ 	const [passportNumberValue, setPassportNumberValue] = useInput({ type: "number", className: "form-control", id: "passportNumber" });
+ 	const [passportExpirationValue, setPassportExpirationValue] = useInput({ type: "date", className: "form-control", id: "passportExpiration" });
+ 	const [countryValue, setCountryValue] = useInput({ type: "text", className: "form-control", id: "country" });
+ 	const [dobValue, setDobValue] = useInput({ type: "date", className: "form-control", id: "dob" });
+
+ 	const [idValue, setIdValue] = useInput({ type: "number", className: "form-control", id: "id" });
+
+ 	const [firstNameValue, setFirstNameValue] = useInput({ type: "text", className: "form-control", id: "firstName" });
+ 	const [lastNameValue, setLastNameValue] = useInput({ type: "text", className: "form-control", id: "lastName" });
 	const CustomerForm = (
 		<div>
 			<div class="mb-3">
 		    	<label for="email" class="form-label">Email</label>
-		    	<input type="email" class="form-control" id="email"/>
+		    	{setEmailValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="Password" class="form-label">Password</label>
-		    	<input type="password" class="form-control" id="Password" />
+		    	{setPasswordValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="Building Name" class="form-label">Building Name</label>
-		    	<input type="text" class="form-control" id="Building Name" />
+		    	{setBuildingNameValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="Street" class="form-label">Street</label>
-		    	<input type="text" class="form-control" id="Street" />
+		    	{setStreetValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="City" class="form-label">City</label>
-		    	<input type="text" class="form-control" id="City" />
+		    	{setCityValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="State" class="form-label">State</label>
-		    	<input type="text" class="form-control" id="State" />
+		    	{setStateValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="Phone number" class="form-label">Phone number</label>
-		    	<input type="text" class="form-control" id="Phone number" />
+		    	{setPhoneNumberValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="Passport number" class="form-label">Passport number</label>
-		    	<input type="text" class="form-control" id="Passport number1" />
+		    	{setPassportNumberValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="Passport expiration" class="form-label">Passport expiration</label>
-		    	<input type="text" class="form-control" id="Passport expiration" />
+		    	{setPassportExpirationValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="Passport Country" class="form-label">Passport Country</label>
-		    	<input type="text" class="form-control" id="Passport Country" />
+		    	{setCountryValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="Date of birth" class="form-label">Date of birth</label>
-		    	<input type="text" class="form-control" id="Date of birth" />
+		    	{setDobValue}
 		  	</div>
 	  	</div>
 	)
@@ -55,15 +81,15 @@ const Register = () => {
 		<div>
 			<div class="mb-3">
 		    	<label for="email" class="form-label">Email</label>
-		    	<input type="email" class="form-control" id="email"/>
+		    	{setEmailValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="Password" class="form-label">Password</label>
-		    	<input type="password" class="form-control" id="Password" />
+		    	{setPasswordValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="ID" class="form-label">ID</label>
-		    	<input type="text" class="form-control" id="ID" />
+		    	{setIdValue}
 		  	</div>
 		</div>
 	)
@@ -72,23 +98,27 @@ const Register = () => {
 		<div>
 			<div class="mb-3">
 		    	<label for="email" class="form-label">Email</label>
-		    	<input type="email" class="form-control" id="email"/>
+		    	{setEmailValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="Password" class="form-label">Password</label>
-		    	<input type="password" class="form-control" id="Password" />
+		    	{setPasswordValue}
+		  	</div>
+		  	<div class="mb-3">
+		    	<label for="Company" class="form-label">Company</label>
+		    	{setCompanyValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="First name" class="form-label">First name</label>
-		    	<input type="text" class="form-control" id="First name" />
+		    	{setFirstNameValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="Last name" class="form-label">Last name</label>
-		    	<input type="text" class="form-control" id="Last name" />
+		    	{setLastNameValue}
 		  	</div>
 		  	<div class="mb-3">
 		    	<label for="Date of birth" class="form-label">Date of birth</label>
-		    	<input type="text" class="form-control" id="Date of birth" />
+		    	{setDobValue}
 		  	</div>
 		</div>
 	)

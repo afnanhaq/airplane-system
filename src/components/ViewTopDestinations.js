@@ -1,3 +1,5 @@
+import {useState} from 'react';
+
 const ViewTopDestinations = (props) => {
 	return(
 		<div className="col-md-5 mx-auto mt-5">

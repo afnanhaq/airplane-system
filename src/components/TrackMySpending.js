@@ -1,3 +1,5 @@
+ import {useState} from 'react';
+
 import { VictoryBar, VictoryChart,  VictoryTheme, VictoryLabel} from "victory";
 
 const TrackMySpending = (props) => {
@@ -9,20 +11,36 @@ const TrackMySpending = (props) => {
     { x: 5, y: 9 },
     { x: 6, y: 4 }
   ]
+
+  	function useInput({ type, className, id /*...*/ }) {
+	   const [value, setValue] = useState("");
+	   const input = <input value={value} id={id} onChange={e => setValue(e.target.value)} 
+	   type={type} className={className} name={id} />;
+	   return [value, input];
+ 	}
+
+ 	const [startDateValue, setStartDateValue] = useInput({ type: "date", className: "form-control", id: "startDate" });
+ 	const [endDateValue, setEndDateValue] = useInput({ type: "date", className: "form-control", id: "endDate" });
+
+ 	const [type, setType] = useState(false);
+
+    const onClick = () => {
+    	setType(!type);
+	};
 	return (
 		<div className="col-md-4 mx-auto my-5">
 			<h2> Track my spending </h2>
 			<div class="form-check mb-3">
-			  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+			  <input class="form-check-input" type="checkbox" id="flexCheckDefault" onClick={onClick} />
 			  <label class="form-check-label" for="flexCheckDefault">
 			    Set custom dates
 			  </label>
 			</div>
 			<label for="start">Start date:&emsp;</label>
-			<input type="date" id="start" name="start" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
+			{setStartDateValue}
 			<br/>
 			<label for="end" className="mt-4">End date:&emsp;</label>
-			<input type="date" id="end" name="end" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
+			{setEndDateValue}
 			<hr />
 			<h4 className="mb-4"> Total money spent: $500 </h4>
 			<div className="border border-danger p-3">

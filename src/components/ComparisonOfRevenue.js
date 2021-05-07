@@ -1,3 +1,5 @@
+import {useState} from 'react';
+
 import { VictoryPie, VictoryChart,  VictoryTheme, VictoryLabel} from "victory";
 
 const ComparisonOfRevenue = (props) => {

@@ -1,3 +1,5 @@
+import {useState} from 'react';
+
 import { VictoryBar, VictoryChart,  VictoryTheme, VictoryLabel} from "victory";
 
 const ViewReports = (props) => {
@@ -10,16 +12,26 @@ const ViewReports = (props) => {
     { x: 6, y: 4 }
   ]
 
+  	function useInput({ type, className, id /*...*/ }) {
+	   const [value, setValue] = useState("");
+	   const input = <input value={value} id={id} onChange={e => setValue(e.target.value)} 
+	   type={type} className={className} name={id} />;
+	   return [value, input];
+ 	}
+
+ 	const [startDateValue, setStartDateValue] = useInput({ type: "date", className: "form-control", id: "startDate" });
+ 	const [endDateValue, setEndDateValue] = useInput({ type: "date", className: "form-control", id: "endDate" });
+
 	return (
 		<div className="col-md-4 mx-auto my-5">
 			<h1> View tickets sold report </h1>
 			<div class="mb-3">
 			    <label for="Start date" className="mt-4">Start date&emsp;</label>
-				<input type="date" id="end" name="Start date" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
+				{setStartDateValue}
 			</div>
 			<div class="mb-3">
 			    <label for="End date" className="mt-4">End date&emsp;</label>
-				<input type="date" id="end" name="End date" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
+				{setEndDateValue}
 			</div>
 			<h4> Tickets sold per month (sold/month) </h4>
 			<VictoryChart

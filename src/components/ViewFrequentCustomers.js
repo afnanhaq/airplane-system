@@ -1,3 +1,5 @@
+import {useState} from 'react';
+
 const ViewFrequentCustomers = (props) => {
 	return (
 		<div className="col-md-4 mx-auto mt-5">

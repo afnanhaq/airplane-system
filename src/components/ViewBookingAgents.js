@@ -1,3 +1,6 @@
+import {useState} from 'react';
+
+
 const ViewBookingAgents = (props) => {
 	// FOR AIRLINE STAFF
 	return(
