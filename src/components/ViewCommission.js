@@ -10,6 +10,15 @@ const ViewCommission = (props) => {
 
  	const [startDateValue, setStartDateValue] = useInput({ type: "date", className: "form-control", id: "startDate" });
  	const [endDateValue, setEndDateValue] = useInput({ type: "date", className: "form-control", id: "endDate" });
+
+ 	const [totalCommission, setTotalCommission] = useState('');
+ 	const [averageCommission, setAverageCommission] = useState('');
+/*
+ 	axios.get('/viewcommission').then(response => response.json()).then(response => {
+ 		setTotalCommission(response.total_commish)
+ 		setAverageCommission(response.average_per)
+ 	})
+*/
 	return (
 		<div className=" row border border-primary col-md-6 p-4 my-4 mx-auto">
 		<h1> View commission </h1>
@@ -21,8 +30,8 @@ const ViewCommission = (props) => {
 			    <label for="Last date of commission" className="mt-4">Last date of commission&emsp;</label>
 				{setEndDateValue}
 		</div>
-		<h3> Total Commission: $500000 </h3>
-		<h3> Average Commission per Ticket: 5500 </h3>
+		<h3> Total Commission: {totalCommission} </h3>
+		<h3> Average Commission per Ticket: {averageCommission} </h3>
 		<h3> Total number of tickets sold: 65 </h3> 
 		</div>
 	)

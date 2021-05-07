@@ -42,43 +42,14 @@ import ViewFrequentCustomers from './components/ViewFrequentCustomers';
 import FlightRatings from './components/FlightRatings';
 import ChangeFlightStatus from './components/ChangeFlightStatus';
 
+import {useState} from 'react';
+
+
+
 ReactDOM.render(
+
   <React.StrictMode>
-    <BrowserRouter>
-        <div>
-        	{/*<Route path="/" component={Navbar} />*/}
-            <Switch>
-	          <Route path="/login"><Login /></Route>
-	          <Route path="/register"><Register /></Route>
-
-	          <Route path="/searchforflights"><SearchForFlights /></Route>
-
-	          <Route path="/" component={App} exact/>
-	          <Route path="/customer" exact><CustomerMainPage /></Route>
-	          <Route path="/bookingagent" exact><BookingAgentMainPage /></Route>
-	          <Route path="/staff" exact><StaffMainPage /></Route> 
-
-	          <Route path="/buyticket"><BuyTicket /></Route>
-	          <Route path="/viewmyflights"><ViewMyFlights /></Route>
-	          <Route path="/rateandcomment"><RateAndComment /></Route>
-	          <Route path="/trackmyspending"><TrackMySpending /></Route>
-
-	          <Route path="/viewcommission"><ViewCommission /></Route>
-	          <Route path="/viewtopcustomers"><ViewTopCustomers /></Route>
-
-	          <Route path="/addairplane"><AddAirplane /></Route>
-	          <Route path="/addairport"><AddAirport /></Route>
-	          <Route path="/createnewflight"><CreateNewFlight /></Route>
-	          <Route path="/viewtopdestinations"><ViewTopDestinations /></Route>
-	          <Route path="/comparisonofrevenue"><ComparisonOfRevenue /></Route>
-	          <Route path="/viewreports"><ViewReports /></Route>
-	          <Route path="/viewbookingagents"><ViewBookingAgents /></Route>
-	          <Route path="/viewfrequentcustomers"><ViewFrequentCustomers /></Route>
-	          <Route path="/viewflightratings"><FlightRatings /></Route>
-	          <Route path="/changeflightstatus"><ChangeFlightStatus /></Route>
-            </Switch>
-        </div> 
-    </BrowserRouter>
+  <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

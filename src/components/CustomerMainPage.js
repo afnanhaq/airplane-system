@@ -5,7 +5,6 @@ import Navbar from './Navbar';
 const CustomerMainPage = (props) => {
 	return (
 		<div>
-		<Navbar />
 		<CardHolder personType="Customer Dashboard">
 			<Card titleicon="fa fa-plane fa-3x" title="View my flights" link="/viewmyflights" />
 			<Card titleicon="fa fa-search-dollar fa-3x" title="Search & purchase" link="/searchforflights" />

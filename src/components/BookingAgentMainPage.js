@@ -9,7 +9,6 @@ import ViewCommission from './ViewCommission';
 const BookingAgentMainPage = (props) => {
 	return (
 		<div>
-		<Navbar />
 		<CardHolder personType="Booking Agent Dashboard">
 			<Card titleicon="fa fa-plane fa-3x" title="View my flights" link="/viewmyflights" />
 			<Card titleicon="fa fa-search-dollar fa-3x" title="Search & purchase" link="/searchforflights" />

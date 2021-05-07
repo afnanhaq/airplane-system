@@ -5,7 +5,6 @@ import Navbar from './Navbar';
 const StaffMainPage = (props) => {
 	return (
 		<div>
-		<Navbar />
 		<CardHolder personType="Staff Dashboard">
 			<Card titleicon="fa fa-location-arrow fa-3x" title="View flights" link="/viewmyflights" />
 			<Card titleicon="fa fa-plane-departure fa-3x" title="Create new flight" link="/createnewflight" />
