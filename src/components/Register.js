@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+const axios = require('axios');
 const Register = () => {
 	const [userType, setUserType] = useState("");
 
@@ -28,6 +28,25 @@ const Register = () => {
 
  	const [firstNameValue, setFirstNameValue] = useInput({ type: "text", className: "form-control", id: "firstName" });
  	const [lastNameValue, setLastNameValue] = useInput({ type: "text", className: "form-control", id: "lastName" });
+
+ 	const handleRegister = (e) => {
+ 		let values = '';
+ 		if (userType === "customer") {
+ 			values = {
+ 				emailValue, passwordValue, buildingNameValue, streetValue, cityValue,
+ 				stateValue, companyValue, phoneNumberValue, passportNumberValue, passportExpirationValue,
+ 				countryValue, dobValue
+ 			}
+ 		}
+ 		else if (userType === "bookingAgent") {
+ 			values = {emailValue, passwordValue, idValue}
+ 		}
+ 		else if (userType === "staff") {
+ 			values = {emailValue, passwordValue, firstNameValue, lastNameValue}
+ 		}
+ 		axios.post("/register", values)
+ 		.then(response => console.log(response))
+ 	}
 	const CustomerForm = (
 		<div>
 			<div class="mb-3">
@@ -128,21 +147,21 @@ const Register = () => {
 			<form>
 				<p className="mb-1"> Choose user type: </p>
 				<div class="form-check form-check-inline">
-				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onClick={() => setUserType("Customer")}/>
+				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onClick={() => setUserType("customer")}/>
 				  <label class="form-check-label" for="flexRadioDefault1">Customer</label>
 				</div>
 				<div class="form-check form-check-inline">
-				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onClick={() => setUserType("BookingAgent")}/>
+				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onClick={() => setUserType("bookingAgent")}/>
 				  <label class="form-check-label" for="flexRadioDefault2">Booking Agent</label>
 				</div>
 				<div class="form-check form-check-inline">
-				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" onClick={() => setUserType("Staff")}/>
+				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" onClick={() => setUserType("staff")}/>
 				  <label class="form-check-label" for="flexRadioDefault3">Staff</label>
 				</div>
 
 			  	{userType === "Customer" ? CustomerForm : (userType==="BookingAgent" ? BookingAgentForm : (userType ==="Staff" ? StaffForm : null))}
 			  	<hr />
-			  	<button type="submit" class="btn btn-primary">Register</button>
+			  	<button type="submit" class="btn btn-primary" onClick={handleRegister}>Register</button>
 			</form>
 		</div>
 	)

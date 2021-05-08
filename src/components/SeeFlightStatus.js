@@ -1,8 +1,6 @@
-import {useState} from 'react';
-
-import FlightSearchTool from './FlightSearchTool';
 import SearchFlightCards from './SearchFlightCards';
-import BuyTicket from './BuyTicket';
+import FlightSearchTool from './FlightSearchTool';
+import {useState} from 'react';
 
 const SearchForFlights = (props) => {
 	const data = [
@@ -49,20 +47,8 @@ const SearchForFlights = (props) => {
 			returnTime: "11:00PM",
 			returnFlightNumber: "JK 420",
 			flightStatus: "On time"
-		}
+		},
 	];
-	const [chosenFlight, setChosenFlight] = useState('');
-	const handleBuy = (flight) => {
-		setChosenFlight({
-			flightNumber: flight.flightNumber,
-			time: flight.departureTime,
-			date: flight.departureDate
-		})
-	}
-
-	const handleGoBack = () => {
-		setChosenFlight('');
-	}
 
 	function useInput({ type, className, id /*...*/ }) {
 	   const [value, setValue] = useState("");
@@ -86,19 +72,14 @@ const SearchForFlights = (props) => {
 		e.preventDefault();
 		console.log("hello");
 	}
-	
 	return (
-		<div>
-		{	chosenFlight ? (<BuyTicket chosenFlight={chosenFlight} handleGoBack={handleGoBack} />) :  
-			(<div className="container">
-				<FlightSearchTool title="Search and purchase flights" onClick={onClick} 
+		<div className="container">
+			<FlightSearchTool title="See flight status" onClick={onClick} 
 				setDepartureDateValue={setDepartureDateValue}
 				setArrivalDateValue={setArrivalDateValue}
 				setSourceAirportValue={setSourceAirportValue}
 				setDestinationAirportValue={setDestinationAirportValue} handleSearch={handleSearch}/>
-				<SearchFlightCards data={data} isPurchaseable={true} handleBuy={handleBuy}/> 
-			</div>) 
-		}
+			<SearchFlightCards data={data} isShowingStatus={true} />
 		</div>
 	)
 }

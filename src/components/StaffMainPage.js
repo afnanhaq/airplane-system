@@ -8,7 +8,6 @@ const StaffMainPage = (props) => {
 		<CardHolder personType="Staff Dashboard">
 			<Card titleicon="fa fa-location-arrow fa-3x" title="View flights" link="/viewmyflights" />
 			<Card titleicon="fa fa-plane-departure fa-3x" title="Create new flight" link="/createnewflight" />
-			<Card titleicon="fa fa-toggle-off fa-3x" title="Change status" link="/changeflightstatus"/>
 			<Card titleicon="fa fa-plane fa-3x" title="Add airplane" link="/addairplane" />
 			<Card titleicon="fa fa-project-diagram fa-3x" title="Add airport" link="/addairport" />
 			<Card titleicon="fa fa-star-half-alt fa-3x" title="View flight ratings" link="/viewflightratings" />

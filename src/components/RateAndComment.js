@@ -1,5 +1,6 @@
 import {useState} from 'react';
-
+import {useHistory} from 'react-router-dom';
+const axios = require('axios');
 
 const RateAndComment = (props) => {
 	const [type, setType] = useState('');
@@ -12,12 +13,24 @@ const RateAndComment = (props) => {
 	const onChange = (event) => {
 		setComment(event.target.value);
 	}
+	
+	let history = useHistory();
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		axios.post("/rateandcomment", {
+			type,
+			comment
+		})
+		history.push('/customer')
+	}
 
 	return (
-	<div className="col-md-4 mx-auto mt-5">
+	<div>
+	<button onClick={props.handleGoBack} className="btn btn-danger">  GO BACK </button>
+	<div className="col-md-4 mx-auto mt-5 mb-5">
 		<h1> Rate and comment flight </h1>
-		<p> Flight title: MH 370 </p>
-		<p> Flight time and date: Mar 13, 2019, 6:00PM </p>
+		<p> Flight number: {props.chosenFlight.flightNumber}</p>
+		<p> Flight time and date: {props.chosenFlight.date}, {props.chosenFlight.time} </p>
 		<form>
 			<p className="mb-1"> Rate (5 =  best, 1 = worst) </p>
 			<div class="form-check form-check-inline">
@@ -46,8 +59,9 @@ const RateAndComment = (props) => {
 		  	</div>
 		  	
 		  	<hr />
-		  	<button type="submit" class="btn btn-primary">Submit</button>
+		  	<button type="submit" class="btn btn-primary" onClick={handleSubmit}>Submit</button>
 		</form>
+	</div>
 	</div>
 	)
 	

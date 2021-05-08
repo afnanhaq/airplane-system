@@ -13,11 +13,10 @@ const SearchFlightCard = (props) => {
 		    	<h6 class="card-subtitle mb-2 text-muted">{props.returnFlightNumber} | {props.returnDate}, {props.returnTime}</h6> 
 		    </div>
 		    ): null}
-		    {props.isPurchaseable ? <a href="#" class="card-link">Buy</a> : null }
-		    {props.isForRateAndComment ? <a href="#" class="card-link">Rate and comment</a> : null }
+		    {props.isPurchaseable ? <button onClick={props.handleBuy} class="btn btn-primary">Buy</button> : null }
+		    {props.isForRateAndComment ? <button onClick={props.handleRate} class="btn btn-primary">Rate and comment</button> : null }
 		    {props.isShowingStatus? <div class="card-footer bg-danger">{props.flightStatus}</div> : null }
-		    {props.canChangeStatus? <div class="card-footer bg-danger">Change status</div> : null }
-
+		    {props.canChangeStatus? <button onClick={props.handleChangeStatus} class="btn btn-primary">Change status</button> : null }
 		  </div>
 		</div>
 	)

@@ -23,8 +23,8 @@ import FlightRatings from './components/FlightRatings';
 import ChangeFlightStatus from './components/ChangeFlightStatus';
 import SearchForFlights from './components/SearchForFlights';
 import ViewMyFlights from './components/ViewMyFlights';
-
-
+import SearchAndPurchaseFlights from './components/SearchAndPurchaseFlights';
+import SeeFlightStatus from './components/SeeFlightStatus';
 import Login from './components/Login';
 import Register from './components/Register';
 
@@ -76,11 +76,7 @@ function App() {
   const onClick = (typeChosen) => {
       setType(typeChosen);
   };
-/*
-  React.useEffect(() => {
-    localStorage.setItem('myValueInLocalStorage', value);
-  }, [value]);
-*/
+
   const handleSubmit = (e) => {
     e.preventDefault();
     window.sessionStorage.setItem('isLoggedIn', 'true');
@@ -118,72 +114,32 @@ function App() {
               <Login setType={e => setType(e)} setUsername={e => setUsername(e)} setPassword={e => setPassword(e)} handleSubmit={handleSubmit} />
             </Route>
             <Route path="/register"><Register /></Route>
-
             <Route path="/searchforflights"><SearchForFlights /></Route>
 
-            <Route path="/" component={EntrancePage} exact/>
+            <Route path="/" exact><EntrancePage /></Route>
             <Route path="/customer" exact>{checkCustomer ? <CustomerMainPage  /> : <Redirect to="/login" />}</Route>
             <Route path="/bookingagent" exact>{checkBookingAgent ? <BookingAgentMainPage /> : <Redirect to="/login" />}</Route>
             <Route path="/staff" exact>{checkStaff ? <StaffMainPage /> : <Redirect to="/login" />}</Route> 
 
-            <Route path="/buyticket"><BuyTicket /></Route>
-            <Route path="/viewmyflights"><ViewMyFlights /></Route>
-            <Route path="/rateandcomment"><RateAndComment /></Route>
-            <Route path="/trackmyspending"><TrackMySpending /></Route>
+            <Route path="/searchandpurchase">{checkCustomer || checkBookingAgent ? <SearchAndPurchaseFlights  /> : <Redirect to="/login" />}</Route>
+            <Route path="/viewmyflights">{checkCustomer || checkBookingAgent ? <ViewMyFlights /> : <Redirect to="/login" />}</Route>
+            <Route path="/trackmyspending">{checkCustomer ? <TrackMySpending  /> : <Redirect to="/login" />}</Route>
 
-            <Route path="/viewcommission"><ViewCommission /></Route>
-            <Route path="/viewtopcustomers"><ViewTopCustomers /></Route>
+            <Route path="/viewcommission">{checkBookingAgent ? <ViewCommission /> : <Redirect to="/login" />}</Route>
+            <Route path="/viewtopcustomers">{checkBookingAgent ? <ViewTopCustomers/> : <Redirect to="/login" />}</Route>
 
-            <Route path="/addairplane"><AddAirplane /></Route>
-            <Route path="/addairport"><AddAirport /></Route>
-            <Route path="/createnewflight"><CreateNewFlight /></Route>
-            <Route path="/viewtopdestinations"><ViewTopDestinations /></Route>
-            <Route path="/comparisonofrevenue"><ComparisonOfRevenue /></Route>
-            <Route path="/viewreports"><ViewReports /></Route>
-            <Route path="/viewbookingagents"><ViewBookingAgents /></Route>
-            <Route path="/viewfrequentcustomers"><ViewFrequentCustomers /></Route>
-            <Route path="/viewflightratings"><FlightRatings /></Route>
-            <Route path="/changeflightstatus"><ChangeFlightStatus /></Route>
+            <Route path="/addairplane">{checkStaff ? <AddAirplane /> : <Redirect to="/login" />}</Route>
+            <Route path="/addairport">{checkStaff ? <AddAirport /> : <Redirect to="/login" />}</Route>
+            <Route path="/createnewflight">{checkStaff ? <CreateNewFlight /> : <Redirect to="/login" />}</Route>
+            <Route path="/viewtopdestinations">{checkStaff ? <ViewTopDestinations /> : <Redirect to="/login" />}</Route>
+            <Route path="/comparisonofrevenue">{checkStaff ? <ComparisonOfRevenue /> : <Redirect to="/login" />}</Route>
+            <Route path="/viewreports">{checkStaff ? <ViewReports /> : <Redirect to="/login" />}</Route>
+            <Route path="/viewbookingagents">{checkStaff ? <ViewBookingAgents /> : <Redirect to="/login" />}</Route>
+            <Route path="/viewfrequentcustomers">{checkStaff ? <ViewFrequentCustomers /> : <Redirect to="/login" />}</Route>
+            <Route path="/viewflightratings">{checkStaff ? <FlightRatings /> : <Redirect to="/login" />}</Route>
             </Switch>
         </div> 
       </BrowserRouter>
-    {/*
-      <Navbar />
-      <div className="container">    
-        <Link to="/staff"> Staff </Link>
-        
-        <Link to="/bookingagent"> Booking Agent </Link>
-        <Register />
-         <Link to="/customer"> Customer </Link>
-        <Login />
-        <EntrancePage />
-        <CustomerMainPage />
-        <BookingAgentMainPage />
-        <StaffMainPage />
-        <SearchFlightCard startingLocation="Budapest, Hungary" destinationLocation="Paris, France" flightNumber="MG 370" isRoundTrip={true} isPurchaseable={true} 
-        isForRateAndComment={true} canChangeStatus={true}
-        isShowingStatus={true} flightStatus="Delayed"
-        departureDate="Sun, 13 Mar 2019" departureTime="6:00pm" returnDate="Mon, 26 Mar 2019" returnTime="8:00PM" returnFlightNumber="GA 366" />
-        <AddAirplane />
-        <AddAirport />
-        <ViewCommission />
-        <FlightSearchTool />
-        <RateAndComment />
-        <ViewTopCustomers />
-        <BuyTicket />
-        <TrackMySpending />
-        <CreateNewFlight />
-        <ViewTopDestinations />
-        <ComparisonOfRevenue />
-        <ViewReports />
-        <ViewBookingAgents />
-        <ViewFrequentCustomers />
-        <FlightRatings />
-        <ChangeFlightStatus />
-        <SearchFlightCards isRoundTrip={true} />
-        <SearchForFlights />
-      </div>
-    */}
     </div>
   );
 }

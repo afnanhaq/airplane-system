@@ -1,5 +1,5 @@
 import {useState} from 'react';
-
+const axios = require('axios');
 const CreateNewFlight = (props) => {
 	function useInput({ type, className, id /*...*/ }) {
 	   const [value, setValue] = useState("");
@@ -15,6 +15,20 @@ const CreateNewFlight = (props) => {
  	const [arrivalDateValue, setArrivalDateValue] = useInput({ type: "date", className: "form-control", id: "arrivalDate" });
  	const [arrivalTimeValue, setArrivalTimeValue] = useInput({ type: "time", className: "form-control", id: "arrivalTime" });
  	
+ 	const handleSubmit = (e) => {
+ 		e.preventDefault();
+ 		const values = { 
+ 			flightNumberValue, 
+ 			basePriceValue, 
+ 			departureDateValue,
+ 			departureTimeValue,
+ 			arrivalDateValue,
+ 			arrivalTimeValue
+ 			 }
+		axios.post('/createnewflight', values)
+		.then(response => console.log(response))
+ 	}
+
 	return(
 	<div className="col-md-4 mx-auto my-5">
 		<h2 class="mt-3">Add new flight</h2>
@@ -43,7 +57,7 @@ const CreateNewFlight = (props) => {
 		    	<label for="Arrival Time" class="form-label">Arrival Time</label>
 		    	{setArrivalTimeValue}
 		  	</div>
-		  	<button type="submit" class="btn btn-primary">Create</button>
+		  	<button type="submit" class="btn btn-primary" onClick={handleSubmit}>Create</button>
 		</form>
 	</div>
 	)

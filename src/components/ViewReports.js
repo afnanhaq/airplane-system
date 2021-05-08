@@ -1,6 +1,8 @@
-import {useState} from 'react';
+import {useState, useEffect } from 'react';
 
 import { VictoryBar, VictoryChart,  VictoryTheme, VictoryLabel} from "victory";
+const axios = require('axios');
+
 
 const ViewReports = (props) => {
 	const data = [
@@ -21,6 +23,11 @@ const ViewReports = (props) => {
 
  	const [startDateValue, setStartDateValue] = useInput({ type: "date", className: "form-control", id: "startDate" });
  	const [endDateValue, setEndDateValue] = useInput({ type: "date", className: "form-control", id: "endDate" });
+
+ 	useEffect(() => {
+		axios.get("/viewreports")
+		.then(response => console.log(response))
+	}, [])
 
 	return (
 		<div className="col-md-4 mx-auto my-5">

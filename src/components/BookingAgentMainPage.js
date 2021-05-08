@@ -11,7 +11,7 @@ const BookingAgentMainPage = (props) => {
 		<div>
 		<CardHolder personType="Booking Agent Dashboard">
 			<Card titleicon="fa fa-plane fa-3x" title="View my flights" link="/viewmyflights" />
-			<Card titleicon="fa fa-search-dollar fa-3x" title="Search & purchase" link="/searchforflights" />
+			<Card titleicon="fa fa-search-dollar fa-3x" title="Search & purchase" link="/searchandpurchase" />
 			<Card titleicon="fa fa-funnel-dollar fa-3x" title="View commission" link="/viewcommission" />
 			<Card titleicon="fa fa-list-ol fa-3x" title="View top customers" link="/viewtopcustomers" />
 		</CardHolder>

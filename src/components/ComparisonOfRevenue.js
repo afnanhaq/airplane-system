@@ -1,7 +1,8 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+
 
 import { VictoryPie, VictoryChart,  VictoryTheme, VictoryLabel} from "victory";
-
+const axios = require('axios');
 const ComparisonOfRevenue = (props) => {
 	const lastMonthData = [
     { x: "Direct", y: 35 },
@@ -11,7 +12,10 @@ const ComparisonOfRevenue = (props) => {
     	{ x: "Direct", y: 75 },
     	{ x: "Indirect", y: 150 }
     ]
-
+    useEffect(() => {
+    	axios.get("/comparisonofrevenue")
+    	.then(response => console.log(response))
+    }, [])
 	return(
 		<div className="col-md-6 mx-auto my-5">
 			<h1> Comparison of revenue earned</h1>

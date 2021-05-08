@@ -26,10 +26,23 @@ const Navbar = (props) => {
 
 		</>
 	)
+	let link = <Link to="/" class="mb-0 h1 display-3 none">Afnan's Travels</Link>
+	const currentValue = sessionStorage.getItem('type')
+	if (currentValue === "customer") {
+		link = <Link to="/customer" class="mb-0 h1 display-3 none">Afnan's Travels</Link>
+	}
+	else if (currentValue === "bookingAgent") {
+		link = <Link to="/bookingagent" class="mb-0 h1 display-3 none">Afnan's Travels</Link>
+	}
+	else if (currentValue === "staff") {
+		link = <Link to="/staff" class="mb-0 h1 display-3 none">Afnan's Travels</Link>
+	}
+	
+	
 	return (
 		<nav class="navbar navbar-light navbar-expand-lg bg-primary py-3">
 		  	<div class="container-fluid">
-		    	<Link to="/" class="mb-0 h1 display-3 none">Afnan's Travels</Link>
+		    	{link}
 		  	</div>
 		  	<div class="collapse navbar-collapse" id="navbarNav">
 		      	<ul class="navbar-nav ml-auto mx-0">

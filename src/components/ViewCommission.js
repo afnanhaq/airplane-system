@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import {useState, useEffect } from 'react';
+const axios = require('axios');
 
 const ViewCommission = (props) => {
 	function useInput({ type, className, id /*...*/ }) {
@@ -11,14 +12,14 @@ const ViewCommission = (props) => {
  	const [startDateValue, setStartDateValue] = useInput({ type: "date", className: "form-control", id: "startDate" });
  	const [endDateValue, setEndDateValue] = useInput({ type: "date", className: "form-control", id: "endDate" });
 
- 	const [totalCommission, setTotalCommission] = useState('');
- 	const [averageCommission, setAverageCommission] = useState('');
-/*
- 	axios.get('/viewcommission').then(response => response.json()).then(response => {
- 		setTotalCommission(response.total_commish)
- 		setAverageCommission(response.average_per)
- 	})
-*/
+ 	const [totalCommission, setTotalCommission] = useState('700');
+ 	const [averageCommission, setAverageCommission] = useState('33');
+ 	const [ticketsSold, setTicketsSold] = useState('400');
+ 	
+	useEffect(() => {
+		axios.get("/viewcommission")
+		.then(response => console.log(response))
+	}, [])
 	return (
 		<div className=" row border border-primary col-md-6 p-4 my-4 mx-auto">
 		<h1> View commission </h1>
@@ -32,7 +33,7 @@ const ViewCommission = (props) => {
 		</div>
 		<h3> Total Commission: {totalCommission} </h3>
 		<h3> Average Commission per Ticket: {averageCommission} </h3>
-		<h3> Total number of tickets sold: 65 </h3> 
+		<h3> Total number of tickets sold: {ticketsSold} </h3> 
 		</div>
 	)
 }

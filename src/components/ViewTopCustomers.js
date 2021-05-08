@@ -1,26 +1,32 @@
-import {useState} from 'react';
-
+import {useState, useEffect } from 'react';
 import { VictoryBar, VictoryChart,  VictoryTheme, VictoryLabel} from "victory";
+const axios = require('axios');
+
 
 
 const ViewTopCustomers = (props) => {
-	const TicketsSoldData = [
-    { x: 1, y: 2 },
-    { x: 2, y: 3 },
-    { x: 3, y: 5 },
-    { x: 4, y: 4 },
-    { x: 5, y: 9 },
-    { x: 6, y: 4 }
+	const ticketsSoldData = [
+    { x: "aaron", y: 2 },
+    { x: "barron", y: 3 },
+    { x: "charlie", y: 5 },
+    { x: "james", y: 4 },
+    { x: "elijah", y: 9 }
   ]
 
   const commissionData = [
-    { x: 1, y: 2 },
-    { x: 2, y: 3 },
-    { x: 3, y: 5 },
-    { x: 4, y: 4 },
-    { x: 5, y: 9 },
-    { x: 6, y: 4 }
+    { x: "corporate", y: 2 },
+    { x: "jersey", y: 3 },
+    { x: "form", y: 5 },
+    { x: "jeneziah", y: 4 },
+    { x: "horry", y: 9 }
   ]
+  useEffect(() => {
+		axios.get("/viewreports")
+		.then(response => console.log(response))
+	}, [])
+  
+  const commissionPeople = commissionData.map(data => {return <li> {data.x} </li>})
+  const ticketsSoldPeople = ticketsSoldData.map(data => {return <li> {data.x} </li>})
 	//FOR BOOKING AGENT
 	return (
 		<div className="col-md-4 mx-auto mt-5">
@@ -34,15 +40,11 @@ const ViewTopCustomers = (props) => {
 			  <VictoryBar
 			    barWidth={25}
 			    style={{ data: { fill: "#c43a31" } }}
-			    data={TicketsSoldData}
+			    data={ticketsSoldData}
 			  />
 			</VictoryChart>
 			<ol>
-			  <li>Coffee</li>
-			  <li>Tea</li>
-			  <li>Milk</li>
-			  <li>Tea</li>
-			  <li>Milk</li>
+			  {ticketsSoldPeople}
 			</ol>  
 
 			<h4> Top 5 customers (based on amount of commission in past year) </h4>
@@ -58,11 +60,7 @@ const ViewTopCustomers = (props) => {
 			  />
 			</VictoryChart>
 			<ol>
-			  <li>Coffee</li>
-			  <li>Tea</li>
-			  <li>Milk</li>
-			  <li>Tea</li>
-			  <li>Milk</li>
+			  {commissionPeople}
 			</ol>
 		</div>
 	)

@@ -2,16 +2,7 @@ import {useState, useEffect } from 'react';
 import { Link} from "react-router-dom";
 
 const Login = (props) => {
-/*
-	axios.post('/login', {
-		email: usernameValue,
-		password: passwordValue
-	})
-	.then(response => {
-		response.json()	
-	})
-	.then(response => setIsSuccess(response))
-*/
+
 	var success = null;
 	if (window.sessionStorage.getItem('type') === "customer") {
 		success = (

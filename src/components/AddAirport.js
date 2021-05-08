@@ -1,4 +1,6 @@
 import {useState} from 'react';
+const axios = require('axios');
+
 const AddAirport = (props) => {
 	function useInput({ type, className, id /*...*/ }) {
 	   const [value, setValue] = useState("");
@@ -9,6 +11,13 @@ const AddAirport = (props) => {
 
  	const [nameValue, setNameValue] = useInput({ type: "text", className: "form-control", id: "Name" });
  	const [cityValue, setCityValue] = useInput({ type: "text", className: "form-control", id: "City" });
+
+ 	const runSubmit = (e) => {
+ 		e.preventDefault();
+ 		const values = { ap_name: nameValue, city: cityValue}
+		axios.post('http://localhost:5000/addairport', values)
+		.then(response => console.log(response))
+ 	}
 
 	return(
 		<div className="col-md-4 mx-auto mt-5">
@@ -22,7 +31,7 @@ const AddAirport = (props) => {
 			    	<label for="City" class="form-label">City</label>
 			    	{setCityValue}
 			  	</div>
-			  	<button type="submit" class="btn btn-primary">Submit</button>
+			  	<button type="submit" class="btn btn-primary" onClick={runSubmit}>Submit</button>
 		  	</form>
 	  	</div>
 	)

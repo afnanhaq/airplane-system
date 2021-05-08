@@ -1,7 +1,7 @@
- import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 import { VictoryBar, VictoryChart,  VictoryTheme, VictoryLabel} from "victory";
-
+const axios = require('axios')
 const TrackMySpending = (props) => {
 	const data = [
     { x: 1, y: 2 },
@@ -21,12 +21,18 @@ const TrackMySpending = (props) => {
 
  	const [startDateValue, setStartDateValue] = useInput({ type: "date", className: "form-control", id: "startDate" });
  	const [endDateValue, setEndDateValue] = useInput({ type: "date", className: "form-control", id: "endDate" });
-
+ 	
+ 	const [spending, setSpending] = useState('');
  	const [type, setType] = useState(false);
 
     const onClick = () => {
     	setType(!type);
 	};
+
+	useEffect(() => {
+		axios.get("/trackmyspending")
+		.then(response => console.log(response))
+	}, [])
 	return (
 		<div className="col-md-4 mx-auto my-5">
 			<h2> Track my spending </h2>

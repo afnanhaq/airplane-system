@@ -1,4 +1,5 @@
 import { useState } from 'react';
+const axios = require('axios');
 
 const AddAirplane = (props) => {
 
@@ -8,11 +9,14 @@ const AddAirplane = (props) => {
 	   type={type} className={className} name={id} />;
 	   return [value, input];
  	}
-
+ 	
  	const [seatsValue, setSeatsValue] = useInput({ type: "number", className: "form-control", id: "seats" });
  	const [idValue, setIDValue] = useInput({ type: "number", className: "form-control", id: "ID" });
 	const runSubmit = (e) => {
 		e.preventDefault()
+		const values = { al_name: "China Eastern", seats: seatsValue, plane_id: idValue}
+		axios.post('http://localhost:5000/addairplane', values)
+		.then(response => console.log(response))
 		console.log(seatsValue, idValue);
 	}
 	return(

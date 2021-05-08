@@ -1,4 +1,5 @@
 import {useState} from 'react';
+const axios = require('axios');
 const BuyTicket = (props) => {
 	function useInput({ type, className, id /*...*/ }) {
 	   const [value, setValue] = useState("");
@@ -17,13 +18,21 @@ const BuyTicket = (props) => {
     	setType(typeChosen);
 	};
 
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		const values = { type, cardNumberValue, nameOnCardValue, expirationDateValue }
+		axios.post('/buyticket', values)
+		.then(response => console.log(response))
+	}
+
 	return (
-		<div className="col-md-4 mx-auto mt-5">
+		<div>
+		<button onClick={props.handleGoBack} className="btn btn-danger">  GO BACK </button>
+		<div className="col-md-4 mx-auto mt-5 mb-5">
 			<h2> Buy Ticket </h2>
 			<h4> Ticket details </h4>
-			<p> Airlines: Etihad </p>
-			<p> Flight number: MG 370 </p>
-			<p> Mar 13 2019, 6:00PM </p>
+			<p> Flight number: {props.chosenFlight.flightNumber} </p>
+			<p> {props.chosenFlight.date}, {props.chosenFlight.time} </p>
 			<p> Sold price:  $450 </p>
 			<p className="mb-1"> Choose card type: </p>
 				<div class="form-check form-check-inline">
@@ -47,7 +56,8 @@ const BuyTicket = (props) => {
 		    	{setExpirationDateValue}
 		  	</div>
 		  	<hr />
-			<button type="submit" class="btn btn-primary">Buy</button>
+			<button type="submit" class="btn btn-primary" onClick={handleSubmit}>Buy</button>
+		</div>
 		</div>
 
 	)
